@@ -14,8 +14,7 @@ class ConferenceQuery : Query {
     ).filter { p -> p.name.startsWith(nameStartWith ?: "") }
 
     fun schedule() = ScheduleDetails(
-        greetings = "Welcome to the list of talks",
-        talks = listOf("GraphQL is awesome", "GraphQL-Kotlin is even better")
+        greetings = "Welcome to the list of talks"
     )
 }
 
