@@ -1,10 +1,20 @@
 package com.expediagroup.graphql.demo.query
 
+import com.expediagroup.graphql.annotations.GraphQLIgnore
 import com.expediagroup.graphql.spring.operations.Query
+import org.springframework.beans.factory.BeanFactory
+import org.springframework.beans.factory.BeanFactoryAware
 import org.springframework.stereotype.Component
 
 @Component
-class ConferenceQuery : Query {
+class ConferenceQuery : Query, BeanFactoryAware {
+
+    private lateinit var beanFactory: BeanFactory
+
+    @GraphQLIgnore
+    override fun setBeanFactory(beanFactory: BeanFactory) {
+        this.beanFactory = beanFactory
+    }
 
     fun conference() = Conference(name = "Expedia xTech")
 
@@ -13,9 +23,7 @@ class ConferenceQuery : Query {
         Speaker(name = "Guillaume", talks = listOf("GraphQL is awesome", "GraphQL-Kotlin is even better"))
     ).filter { p -> p.name.startsWith(nameStartWith ?: "") }
 
-    fun schedule() = ScheduleDetails(
-        greetings = "Welcome to the list of talks"
-    )
+    fun schedule(): ScheduleDetails = beanFactory.getBean(ScheduleDetails::class.java,  "Welcome to the list of talks")
 }
 
 data class Conference(val name: String)

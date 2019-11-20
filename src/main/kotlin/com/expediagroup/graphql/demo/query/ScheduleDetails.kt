@@ -4,7 +4,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.Scope
+import org.springframework.stereotype.Component
 
+@Component
+@Scope("prototype")
 class ScheduleDetails(val greetings: String) {
 
     private val logger = LoggerFactory.getLogger(ScheduleDetails::class.java)
