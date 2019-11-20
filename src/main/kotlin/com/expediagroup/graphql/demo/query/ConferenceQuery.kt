@@ -13,9 +13,7 @@ class ConferenceQuery : Query {
         Speaker(name = "Guillaume", talks = listOf("GraphQL is awesome", "GraphQL-Kotlin is even better"))
     ).filter { p -> p.name.startsWith(nameStartWith ?: "") }
 
-    fun schedule() = ScheduleDetails(
-        greetings = "Welcome to the list of talks"
-    )
+    fun schedule() = ScheduleDetails()
 }
 
 data class Conference(val name: String)
