@@ -4,6 +4,7 @@ import com.expediagroup.graphql.annotations.GraphQLIgnore
 import com.expediagroup.graphql.spring.operations.Query
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.beans.factory.BeanFactoryAware
+import org.springframework.beans.factory.getBean
 import org.springframework.stereotype.Component
 
 @Component
@@ -23,7 +24,7 @@ class ConferenceQuery : Query, BeanFactoryAware {
         Speaker(name = "Guillaume", talks = listOf("GraphQL is awesome", "GraphQL-Kotlin is even better"))
     ).filter { p -> p.name.startsWith(nameStartWith ?: "") }
 
-    fun schedule(): ScheduleDetails = beanFactory.getBean(ScheduleDetails::class.java,  "Welcome to the list of talks")
+    fun schedule(): ScheduleDetails = beanFactory.getBean()
 }
 
 data class Conference(val name: String)

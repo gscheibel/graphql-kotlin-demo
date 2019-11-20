@@ -1,5 +1,6 @@
 package com.expediagroup.graphql.demo.query
 
+import com.expediagroup.graphql.demo.context.CustomGraphQLContext
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -9,7 +10,13 @@ import org.springframework.stereotype.Component
 
 @Component
 @Scope("prototype")
-class ScheduleDetails(val greetings: String) {
+class ScheduleDetails {
+
+    fun greetings(context: CustomGraphQLContext) = if(context.languages.first() == "fr") {
+        "Bienvenue"
+    } else {
+        "Welcome to the list of talks"
+    }
 
     private val logger = LoggerFactory.getLogger(ScheduleDetails::class.java)
 
