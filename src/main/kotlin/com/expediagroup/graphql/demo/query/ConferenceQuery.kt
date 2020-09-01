@@ -17,7 +17,7 @@ class ConferenceQuery : Query, BeanFactoryAware {
         this.beanFactory = beanFactory
     }
 
-    fun conference() = Conference(name = "Expedia xTech")
+    fun conference() = Conference(name = "Spring One 2020")
 
     fun people(nameStartWith: String?) = listOf(
         Attendee(name = "Jane", ticket = TicketType.FULL),

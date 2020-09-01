@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 @Scope("prototype")
 class ScheduleDetails {
 
-    fun greetings(context: CustomGraphQLContext) = if(context.languages.first() == "fr") {
+    fun greetings(context: CustomGraphQLContext) = if(context.languages.firstOrNull() == "fr") {
         "Bienvenue"
     } else {
         "Welcome to the list of talks"
